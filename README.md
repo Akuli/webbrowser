@@ -2,6 +2,8 @@
 
 This is a simple web browser written in GTK+ with WebKit.
 
+![Screenshot of my web browser.](screenshot.png)
+
 You need to install GTK+ and WebKit for it. On Debian-based GNU/Linux
 distributions such as Ubuntu and Linux Mint, you can run this on a
 terminal:
