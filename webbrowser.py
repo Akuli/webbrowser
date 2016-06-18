@@ -28,15 +28,10 @@ TODO: Add support for multiple tabs and a statusbar to indicate when
 """
 
 import gi
-gi.require_version('Gtk', '3.0')                    # NOQA
+gi.require_version('Gtk', '3.0')           # NOQA
+gi.require_version('WebKit', '3.0')        # NOQA
 from gi.repository import Gtk
-try:
-    gi.require_version('WebKit2', '3.0')            # NOQA
-    from gi.repository import WebKit2 as WebKit
-except ValueError:                                  # NOQA
-    # ValueError is from gi.require_version.
-    gi.require_version('WebKit', '3.0')             # NOQA
-    from gi.repository import WebKit
+from gi.repository import WebKit
 
 
 class Tab(Gtk.ScrolledWindow):
