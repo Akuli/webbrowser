@@ -27,6 +27,8 @@ TODO: Add support for multiple tabs and a statusbar to indicate when
       something is being loaded.
 """
 
+import signal
+
 import gi
 gi.require_version('Gtk', '3.0')           # NOQA
 gi.require_version('WebKit', '3.0')        # NOQA
@@ -157,6 +159,7 @@ class WebBrowser(Gtk.Box):
 
 def main():
     """Run the web browser."""
+    signal.signal(signal.SIGINT, signal.SIG_DFL)
     window = Gtk.Window()
     window.add(WebBrowser())
     window.set_title("Web browser")
