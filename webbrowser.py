@@ -159,6 +159,7 @@ def main():
     """Run the web browser."""
     window = Gtk.Window()
     window.add(WebBrowser())
+    window.set_title("Web browser")
     window.set_default_size(900, 600)
     window.connect('delete-event', Gtk.main_quit)
     window.show_all()
