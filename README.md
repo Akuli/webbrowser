@@ -10,9 +10,5 @@ terminal:
 
     sudo apt-get install python3-gi gir1.2-{gtk,webkit}-3.0
 
-Or you can install webkit2 instead:
-
-    sudo apt-get install python3-gi gir1.2-{gtk,webkit2}-3.0
-
 Then simply run webbrowser.py in python3, or `chmod +x` it and run
 `./webbrowser.py`.
