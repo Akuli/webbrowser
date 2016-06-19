@@ -32,8 +32,7 @@ import signal
 import gi
 gi.require_version('Gtk', '3.0')           # NOQA
 gi.require_version('WebKit', '3.0')        # NOQA
-from gi.repository import Gtk
-from gi.repository import WebKit
+from gi.repository import Gtk, WebKit
 
 
 class Tab(Gtk.ScrolledWindow):
