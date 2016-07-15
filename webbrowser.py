@@ -28,6 +28,7 @@ TODO: Add support for multiple tabs and a statusbar to indicate when
 """
 
 import signal
+import sys
 
 import gi
 gi.require_version('Gtk', '3.0')           # NOQA
@@ -46,7 +47,7 @@ class Tab(Gtk.ScrolledWindow):
         """Initialize the tab."""
         Gtk.ScrolledWindow.__init__(self)
         self.view = WebKit.WebView()
-        self.view.load_uri('http://www.google.com/')
+        self.view.load_uri(browser.startpage)
         self.view.connect('notify::uri', browser.update)
         self.add(self.view)
 
@@ -57,9 +58,10 @@ class WebBrowser(Gtk.Box):
     Add this into a Gtk.Window.
     """
 
-    def __init__(self):
+    def __init__(self, startpage):
         """Initialize the browser."""
         Gtk.Window.__init__(self, orientation=Gtk.Orientation.VERTICAL)
+        self.startpage = startpage
         self.create_toolbar()
         self.create_addressbar()
         self.new_tab()
@@ -158,9 +160,15 @@ class WebBrowser(Gtk.Box):
 
 def main():
     """Run the web browser."""
+    if len(sys.argv) > 1:
+        startpage = sys.argv[1]
+    else:
+        startpage = 'http://www.google.com/'
+    if startpage == '--help':
+        sys.exit("Usage: {} [startpage]".format(sys.argv[0]))
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     window = Gtk.Window()
-    window.add(WebBrowser())
+    window.add(WebBrowser(startpage=startpage))
     window.set_title("Web browser")
     window.set_default_size(900, 600)
     window.connect('delete-event', Gtk.main_quit)
