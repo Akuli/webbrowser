@@ -27,8 +27,10 @@ TODO: Add support for multiple tabs and a statusbar to indicate when
       something is being loaded.
 """
 
+import os
 import signal
 import sys
+from urllib.request import pathname2url
 
 import gi
 gi.require_version('Gtk', '3.0')           # NOQA
@@ -162,6 +164,8 @@ def main():
     """Run the web browser."""
     if len(sys.argv) > 1:
         startpage = sys.argv[1]
+        if os.path.isfile(startpage):
+            startpage = 'file://' + pathname2url(os.path.abspath(startpage))
     else:
         startpage = 'http://www.google.com/'
     if startpage == '--help':
