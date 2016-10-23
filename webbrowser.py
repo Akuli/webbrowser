@@ -62,7 +62,7 @@ class WebBrowser(Gtk.Box):
 
     def __init__(self, startpage):
         """Initialize the browser."""
-        Gtk.Window.__init__(self, orientation=Gtk.Orientation.VERTICAL)
+        super().__init__(orientation=Gtk.Orientation.VERTICAL)
         self.startpage = startpage
         self.create_toolbar()
         self.create_addressbar()
